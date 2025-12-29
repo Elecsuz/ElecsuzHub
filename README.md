@@ -5,4 +5,4 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Elecsuz/brookhavenavatar/refs/heads/main/script"))()
 ```
 
-![](/image.png)
+![](/brookhaven-avatar.png)
