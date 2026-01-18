@@ -1,8 +1,8 @@
 # Elecsuz Hub'ı kullandığınız için teşekkür ederiz (Brookhaven 🏡 RP)
-# Script Durumu (🟡) (eh yani)
+# Script Durumu (🟢) (Stabil)
 
 ```
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Elecsuz/brookhavenavatar/refs/heads/main/script"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Elecsuz/ElecsuzHub/refs/heads/main/brookhaven-avatar"))()
 ```
 
 ![](/brookhaven-avatar.png)
