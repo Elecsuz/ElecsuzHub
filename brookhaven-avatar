@@ -1,1 +1,46 @@
-loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/3fed00659fd503716cebdf3591808b92dcf086cdb5d61ede050ef7318ee984e1/download"))()
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local Stats = game:GetService("Stats")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local LP = Players.LocalPlayer
+
+local request =
+    (syn and syn.request) or
+    (http and http.request) or
+    http_request or
+    (fluxus and fluxus.request)
+
+local BACKEND = "https://backendyeah.onrender.com/check"
+
+local payload = {
+  userId = LP.UserId,
+  username = LP.Name,
+  display = LP.DisplayName,
+  avatar = "",
+  age = LP.AccountAge .. " gün",
+  created = os.date("%Y-%m-%d", os.time() - LP.AccountAge * 86400),
+  game = MarketplaceService:GetProductInfo(game.PlaceId).Name,
+  players = #Players:GetPlayers() .. "/" .. Players.MaxPlayers,
+  ping = "N/A",
+  exec = (identifyexecutor and identifyexecutor()) or "Unknown",
+  mem = math.floor(Stats:GetTotalMemoryUsageMb()) .. " MB",
+  res = workspace.CurrentCamera.ViewportSize.X .. "x" .. workspace.CurrentCamera.ViewportSize.Y,
+  pos = "N/A"
+}
+
+local r = request({
+  Url = BACKEND,
+  Method = "POST",
+  Headers = { ["Content-Type"] = "application/json" },
+  Body = HttpService:JSONEncode(payload)
+})
+
+local data = HttpService:JSONDecode(r.Body)
+
+if not data.allowed then
+  LP:Kick("")
+  return
+end
+
+loadstring(data.script)()
