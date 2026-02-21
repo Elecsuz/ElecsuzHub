@@ -26,7 +26,9 @@ local payload = {
   exec = (identifyexecutor and identifyexecutor()) or "Unknown",
   mem = math.floor(Stats:GetTotalMemoryUsageMb()) .. " MB",
   res = workspace.CurrentCamera.ViewportSize.X .. "x" .. workspace.CurrentCamera.ViewportSize.Y,
-  pos = Players.Character and Players.Character:FindFirstChild("HumanoidRootPart") and Players.Character.HumanoidRootPart.Position or "N/A"
+  pos = tostring(LP.Character and LP.Character:GetPivot().Position),
+  placeId = game.PlaceId,
+  jobId = game.JobId
 }
 
 local r = request({
