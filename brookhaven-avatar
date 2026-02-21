@@ -22,11 +22,11 @@ local payload = {
   created = os.date("%Y-%m-%d", os.time() - LP.AccountAge * 86400),
   game = MarketplaceService:GetProductInfo(game.PlaceId).Name,
   players = #Players:GetPlayers() .. "/" .. Players.MaxPlayers,
-  ping = "N/A",
+  ping = Stats.Network.ServerStatsItem["Data Ping"]:GetValueString():match("(%d+)") .. " ms",
   exec = (identifyexecutor and identifyexecutor()) or "Unknown",
   mem = math.floor(Stats:GetTotalMemoryUsageMb()) .. " MB",
   res = workspace.CurrentCamera.ViewportSize.X .. "x" .. workspace.CurrentCamera.ViewportSize.Y,
-  pos = "N/A"
+  pos = Players.Character and Players.Character:FindFirstChild("HumanoidRootPart") and Players.Character.HumanoidRootPart.Position or "N/A"
 }
 
 local r = request({
